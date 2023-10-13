@@ -38,8 +38,44 @@ var canvas = document.getElementById("canvas"),
       jumping: false,
       grounded: false,
       lastDir: "l",
-      dead: false,
-      kills: 0
-    },
-    keys = [],
-    friction = 0.9,
+              ctx.drawImage(player2Sprites[frameRP2],player2.x,player2.y);
+              ++frameRP2;
+              if (frameRP2 == 11) {
+                  frameRP2 = 1;
+              }
+            } else if (player2.jumping == true) {
+              // jump
+              if (player2.lastDir == "l") {
+                ctx.drawImage(player2Sprites[24],player2.x,player2.y);
+              } else {
+                ctx.drawImage(player2Sprites[23],player2.x,player2.y);
+              }
+            } else if (keys[186] || b_P2 == true) {
+              // attack
+              if (player2.lastDir == "l") {
+                ctx.drawImage(player2Sprites[frameLPunchP2],(player2.x - player2.width / 2),player2.y);
+                if (frameLPunchP2 != 36) {
+                  ++frameLPunchP2;
+                  // dealing damage from right
+                  if ((player2.x - player2.range) <= (player1.x + player1.width) &&
+                    (player2.x - player2.range) >= player1.x - (player1.width / 2) &&
+                    player2.y >= player1.y &&
+                    player2.y <= player1.y + player1.height) {
+                      hurt(player1, player2, healthP1);
+                  } else {
+                    sound[1].play();
+                  }
+                }
+                if (frameLPunchP2 == 46) {
+                  frameLPunchP2 = 36;
+                }
+              } else {
+                ctx.drawImage(player2Sprites[frameRPunchP2],player2.x,player2.y);
+                if (frameRPunchP2 != 25) {
+                  ++frameRPunchP2;
+                  // dealing damage from left
+                  if ((player2.x + player2.width) + player2.range >= player1.x &&
+                    (player2.x + player2.width) + player2.range <= (player1.x + (player1.width * 1.5)) &&
+                    player2.y >= player1.y &&
+                    player2.y <= player1.y + player1.height) {
+                      hurt(playe
