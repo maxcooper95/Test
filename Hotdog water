@@ -1,0 +1,20 @@
+  line-height: 0;
+}
+.move {
+  background: #888;
+}
+.move:active {
+  background: #666;
+}
+.a-btn {
+  background: #04c;
+}
+.a-btn:active {
+  background: #028;
+}
+.b-btn {
+  background: #080;
+}
+.b-btn:active {
+  background: #040;
+}
